@@ -16,37 +16,36 @@ else:
     print("No arguments given, provide layout, script and output name.")
     exit()
 
-# select based on input
 with open(f"layouts/{layout}.json", "r", encoding="utf-8") as file:
     layout_data = json.load(file)
 
-try:
-    with open(script, "r", encoding="utf-8") as script:
-        data = script.read()
-        matches = re.findall(r"^\s*?[^\s*?;](.*?)::", data, re.MULTILINE)
-        sanitized_matches = []
-        for match in matches:
-            sanitized_matches.append(
-                match.lower()
-                .strip()
-                .replace("\t", "")
-                .replace("~", "")
-                .replace("$", "")
-                .replace("<", "")
-                .replace(">", "")
-                .replace("#", "")
-                .replace("^", "")
-                .replace("!", "")
-                .replace("+", "")
-            )
-        keybinds = []
-        keybinds = [
-            x for x in sanitized_matches if not (x in keybinds or keybinds.append(x))
-        ]
-
+    try:
+        with open(script, "r", encoding="utf-8") as script:
+            data = script.readlines()
+            matches = []
+            for line in data:
+                search = re.search(r"^\s*?[^\s*?;](.*?)::", line, re.DOTALL)
+                if search is not None:
+                    matches.append(search.group())
+            sanitized_matches = []
+            for match in matches:
+                sanitized_matches.append(
+                    match.lower()
+                    .strip()
+                    .replace("\t", "")
+                    .replace("~", "")
+                    .replace("$", "")
+                    .replace("<", "")
+                    .replace(">", "")
+                    .replace("#", "")
+                    .replace("^", "")
+                    .replace("!", "")
+                    .replace("+", "")
+                    .replace("::", "")
+                )
         # make subset layouts keys with modifiers
-except:
-    print("Script file not found!")
+    except FileNotFoundError:
+        print("Script file not found!")
 
 
 def return_with_modifiers_preset(bg_fill="white"):
@@ -120,14 +119,24 @@ for rows in layout_data:
                 continue
 
         else:
-            if column.lower() in keybinds:
+            if column.lower() in sanitized_matches:
+                redness = 255 - (sanitized_matches.count(column.lower()) - 1) * 32
+                redness = hex(64) if redness <= 63 else hex(redness)
                 if modified_width != 1 or modified_height != 1:
-                    elements.append(return_with_modifiers_preset(bg_fill="red"))
+                    elements.append(
+                        return_with_modifiers_preset(
+                            bg_fill=f"#{redness.replace("0x", "")}0000"
+                        )
+                    )
                     x_0 += key_dimension * modified_width
                     modified_width = 1
                     modified_height = 1
                 else:
-                    elements.append(return_normal_preset(bg_fill="red"))
+                    elements.append(
+                        return_normal_preset(
+                            bg_fill=f"#{redness.replace("0x", "")}0000"
+                        )
+                    )
                     x_0 += key_dimension
             else:
                 if modified_width != 1 or modified_height != 1:
