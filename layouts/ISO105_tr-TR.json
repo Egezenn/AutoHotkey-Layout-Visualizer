@@ -4,5 +4,5 @@
 	[{"w":1.5},"Tab","Q","W","E","R","T","Y","U","I","O","P","Ğ","Ü",{"w":1.25,"w2":1.5,"h":2,"h2":1,"x":0.25,"x2":-0.25},"Enter",{"x":0.25},"Del","End","PgDn",{"x":0.25},"Numpad7","Numpad8","Numpad9",{"h":2},"NumpadAdd",{"x":0.25},"LButton","MButton","RButton"],
 	[{"w":1.75},"CapsLock","A","S","D","F","G","H","J","K","L","Ş","İ",",",{"x":4.75},"Numpad4","Numpad5","Numpad6",{"x":2.25},"WheelDown"],
 	[{"w":1.25},"LShift","<","Z","X","C","V","B","N","M","Ö","Ç",".",{"w":2.75},"RShift",{"x":1.25},"Up",{"x":1.25},"Numpad1","Numpad2","Numpad3",{"h":2},"NumpadEnter",{"x":0.25},"XButton1"],
-	[{"w":1.25},"LCtrl",{"w":1.25},"LWin",{"w":1.25},"LAlt",{"w":6.25},"",{"w":1.25},"AltGr",{"w":1.25},"RWin",{"w":1.25},"Menu",{"w":1.25},"RCtrl",{"x":0.25},"Left","Down","Right",{"x":0.25,"w":2},"Numpad0","NumpadDot",{"x":1.25},"XButton2",{"x":2}]
+	[{"w":1.25},"LCtrl",{"w":1.25},"LWin",{"w":1.25},"LAlt",{"w":6.25},"",{"w":1.25},"AltGr",{"w":1.25},"RWin",{"w":1.25},"Menu",{"w":1.25},"RCtrl",{"x":0.25},"Left","Down","Right",{"x":0.25,"w":2},"Numpad0","NumpadDot",{"x":1.25},"XButton2"]
 ]

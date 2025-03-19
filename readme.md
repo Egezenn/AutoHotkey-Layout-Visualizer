@@ -18,6 +18,10 @@ References [AutoHotkey key list](https://www.autohotkey.com/docs/v1/KeyList.htm)
 
 For other keyboard globalizations you can look at [Microsoft's learn pages](https://learn.microsoft.com/en-us/globalization/windows-keyboard-layouts) regarding the topic.
 
+## Known issues
+
+- Files that require niche encodings might not work.
+
 ## Dependencies
 
 [svg.py](https://github.com/orsinium-labs/svg.py), Licensed under MIT license.

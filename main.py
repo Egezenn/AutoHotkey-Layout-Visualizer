@@ -49,11 +49,11 @@ with open(f"layouts/{layout}.json", "r", encoding="utf-8") as file:
 
 
 def return_with_modifiers_preset(bg_fill="white"):
-    global x_0, y_0, column, key_dimension, modified_height, modified_width
+    global current_width, current_height, column, key_dimension, modified_height, modified_width
     return [
         svg.Rect(
-            x=x_0,
-            y=y_0,
+            x=current_width,
+            y=current_height,
             width=key_dimension * modified_width,
             height=key_dimension * modified_height,
             stroke="black",
@@ -61,8 +61,8 @@ def return_with_modifiers_preset(bg_fill="white"):
             stroke_width=2,
         ),
         svg.Text(
-            x=x_0 + (key_dimension / 2) * modified_width,
-            y=y_0 + key_dimension / 2,
+            x=current_width + (key_dimension / 2) * modified_width,
+            y=current_height + key_dimension / 2,
             text=html.escape(column).replace("&lt;br&gt;", ""),
             fill="black",
             font_size=16,
@@ -74,11 +74,11 @@ def return_with_modifiers_preset(bg_fill="white"):
 
 
 def return_normal_preset(bg_fill="white"):
-    global x_0, y_0, column, key_dimension, modified_height, modified_width
+    global current_width, current_height, column, key_dimension, modified_height, modified_width
     return [
         svg.Rect(
-            x=x_0,
-            y=y_0,
+            x=current_width,
+            y=current_height,
             width=key_dimension,
             height=key_dimension,
             stroke="black",
@@ -86,8 +86,8 @@ def return_normal_preset(bg_fill="white"):
             stroke_width=2,
         ),
         svg.Text(
-            x=x_0 + key_dimension / 2,
-            y=y_0 + key_dimension / 2,
+            x=current_width + key_dimension / 2,
+            y=current_height + key_dimension / 2,
             text=html.escape(column).replace("&lt;br&gt;", ""),
             fill="black",
             font_size=16,
@@ -98,16 +98,20 @@ def return_normal_preset(bg_fill="white"):
     ]
 
 
+row_width_list = []
 modified_width = 1
 modified_height = 1
-y_0 = 0
+current_height = 0
+current_width = 0
 for rows in layout_data:
-    x_0 = 0
+    if current_width != 0:
+        row_width_list.append(current_width)
+    current_width = 0
     for column in rows:
         # each key is iterated, modifiers (width, height modifications skips to the next iteration)
         if type(column) == dict:
             if "x" in column:  # spacing
-                x_0 += key_dimension * float(column["x"])
+                current_width += key_dimension * float(column["x"])
             # "big ass enter", without the width modification (for now)
             if "h" and "h2" in column:
                 modified_height = float(column["h"]) + float(column["h2"])
@@ -128,7 +132,7 @@ for rows in layout_data:
                             bg_fill=f"#{redness.replace("0x", "")}0000"
                         )
                     )
-                    x_0 += key_dimension * modified_width
+                    current_width += key_dimension * modified_width
                     modified_width = 1
                     modified_height = 1
                 else:
@@ -137,25 +141,29 @@ for rows in layout_data:
                             bg_fill=f"#{redness.replace("0x", "")}0000"
                         )
                     )
-                    x_0 += key_dimension
+                    current_width += key_dimension
             else:
                 if modified_width != 1 or modified_height != 1:
                     elements.append(return_with_modifiers_preset())
-                    x_0 += key_dimension * modified_width
+                    current_width += key_dimension * modified_width
                     modified_width = 1
                     modified_height = 1
                 else:
                     elements.append(return_normal_preset())
-                    x_0 += key_dimension
-    y_0 += key_dimension
-
-# x_0 += key_dimension  # because last column isn't a starting point
+                    current_width += key_dimension
+    current_height += key_dimension
+row_width_list.append(current_width)
 
 canvas = svg.SVG(
-    width=x_0,
-    height=y_0,
+    width=max(row_width_list),
+    height=current_height,
     elements=[
-        svg.Rect(width=x_0, height=y_0, stroke="lightgray", fill="lightgray"),
+        svg.Rect(
+            width=max(row_width_list),
+            height=current_height,
+            stroke="lightgray",
+            fill="lightgray",
+        ),
         *elements,
     ],
 )
