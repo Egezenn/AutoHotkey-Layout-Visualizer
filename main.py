@@ -169,5 +169,5 @@ canvas = svg.SVG(
 )
 
 
-with open(output, "w", encoding="utf-8") as svg:
-    svg.write(str(canvas))
+with open(output, "w", encoding="utf-8") as file:
+    file.write(str(canvas))
