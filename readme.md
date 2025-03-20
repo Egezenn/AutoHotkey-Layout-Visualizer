@@ -21,6 +21,7 @@ For other keyboard globalizations you can look at [Microsoft's learn pages](http
 ## Known issues
 
 - Files that require niche encodings might not work.
+- `I` doesn't work `¯\_(ツ)_/¯`, it's a weird character in AutoHotkey as well
 
 ## Dependencies
 
