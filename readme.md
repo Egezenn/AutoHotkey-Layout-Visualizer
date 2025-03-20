@@ -6,7 +6,7 @@ Visualize your keybinds!
 
 ## Usage
 
-`python main.py ISO105_tr-TR script.ahk out.svg`
+`python main.py ISO105 script.ahk out.svg`
 
 ## Information
 
@@ -14,7 +14,7 @@ Visualize your keybinds!
 
 References [AutoHotkey key list](https://www.autohotkey.com/docs/v1/KeyList.htm) from the docs. Scan codes (SCxxx) and virtual keys (VKxxx) are ignored.
 
-(only [tr-TR](layouts/ISO105.json) is in the proper format, do a PR if you make one for yours).
+(only ISO105 layout is supported for now, will add some others. do a PR if you make one for your locale).
 
 For other keyboard globalizations you can look at [Microsoft's learn pages](https://learn.microsoft.com/en-us/globalization/windows-keyboard-layouts) regarding the topic.
 
