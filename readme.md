@@ -14,7 +14,7 @@ Visualize your keybinds!
 
 References [AutoHotkey key list](https://www.autohotkey.com/docs/v1/KeyList.htm) from the docs. Scan codes (SCxxx) and virtual keys (VKxxx) are ignored.
 
-(only [tr-TR](layouts/ISO105_tr-TR.json) is in the proper format, do a PR if you make one for yours).
+(only [tr-TR](layouts/ISO105.json) is in the proper format, do a PR if you make one for yours).
 
 For other keyboard globalizations you can look at [Microsoft's learn pages](https://learn.microsoft.com/en-us/globalization/windows-keyboard-layouts) regarding the topic.
 
