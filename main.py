@@ -51,6 +51,7 @@ try:
     # if they're indented it probably means they're context sensitive
 except FileNotFoundError:
     print("Script file not found!")
+    exit()
 
 
 def svg_element_constructor(
