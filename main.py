@@ -21,6 +21,7 @@ try:
         layout_data = json.load(file)
 except FileNotFoundError:
     print("Layout is not found!\nYou don't have to specify the directory.")
+    exit()
 
 try:
     with open(script, "r", encoding="utf-8") as script:
