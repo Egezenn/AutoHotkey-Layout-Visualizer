@@ -6,7 +6,8 @@ Visualize your keybinds!
 
 ## Usage
 
-`python main.py ISO105 script.ahk out.svg`
+single script: `python main.py ISO105 out.svg script.ahk`
+non-recursive directory: `python main.py ISO105 out.svg <volume>:\<dir>` or `python main.py ISO105 out.svg <volume>:\<dir>\*`
 
 ## Information
 
