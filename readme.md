@@ -7,13 +7,14 @@ Visualize your keybinds!
 ## Usage
 
 single script: `python main.py ISO105 out.svg script.ahk`
+
 non-recursive directory: `python main.py ISO105 out.svg <volume>:\<dir>` or `python main.py ISO105 out.svg <volume>:\<dir>\*`
 
 ## Information
 
 [Layouts](/layouts/) are pulled from [here](https://raw.githubusercontent.com/ijprest/keyboard-layout-editor/refs/heads/master/layouts.json).
 
-References [AutoHotkey key list](https://www.autohotkey.com/docs/v1/KeyList.htm) from the docs. Scan codes (SCxxx) and virtual keys (VKxxx) are ignored.
+References [AutoHotkey key list](https://www.autohotkey.com/docs/v1/KeyList.htm) from the docs. Scan codes (SCxxx) and virtual keys (VKxx) are ignored.
 
 (only ISO105 layout is supported for now, will add some others. do a PR if you make one for your locale).
 
